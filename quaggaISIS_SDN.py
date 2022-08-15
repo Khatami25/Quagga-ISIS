@@ -2,7 +2,6 @@
 
 from mininet.topo import Topo
 from mininet.net import Mininet
-from mininet.node import Node
 from mininet.node import Node, RemoteController, OVSSwitch
 from mininet.log import setLogLevel, info
 from mininet.cli import CLI
@@ -55,14 +54,15 @@ class NetworkTopo( Topo ):
 	self.addLink(h1,switch1,intfName1='s1-eth0')
 	self.addLink(h2,switch2,intfName1='s2-eth0')
 	self.addLink(h3,switch3,intfName1='s3-eth0')
-
+	
+	
            
 def run():
     "Test linux router"
     topo = NetworkTopo()
     #net = Mininet(controller = None, topo=topo )  # controller is used by s1-s3
     net = Mininet(controller=RemoteController,topo = topo)
-    c1 = net.addController('c1', ip='192.168.56.106',port = 6654)
+    #c1 = net.addController('c1', ip='localhost',port = 6654)
     net.start()
     info( '*** Routing Table on Router:\n' )
     #info( net[ 'r1' ].cmd( 'route' ) )
